@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 offset-md-3">
+                <mat-card>
+                    <div class="container text-center ">
+                        <img src="../../../assets/login.png" alt="">
+                    </div>
+                    <h1 class="text-center">Login Here</h1>
+
+                    <!-- {{user|json}} -->
+                    <form>
+                        <!-- username -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>User Name</mat-label>
+                            <input name="username" required matInput placeholder="Enter here">
+                            <mat-hint>Valid username!!</mat-hint>
+                        </mat-form-field>
+                        <!-- password -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input name="password" required type="password" matInput placeholder="Enter here">
+                        </mat-form-field>
+
+                        <div class="container text-center">
+                            <button type="submit" mat-raised-button color="primary">Login</button>
+                            <button type="reset" mat-raised-button color="accent"
+                                style="margin-left: 20px;">Reset</button>
+                        </div>
+
+
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
