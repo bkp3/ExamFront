@@ -9,6 +9,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  //current user:which is loggedin
+  public getCurrentUser() {
+    return this.http.get(`${baseUrl}/current-user`);
+  }
+
   //generate token
   public generateToken(loginData: any) {
     return this.http.post(`${baseUrl}/generate-token`, loginData);
@@ -58,13 +63,13 @@ export class LoginService {
     }
   }
 
-  /*
+  
   //get user role
   public getUserRole(){
     let user=this.getUser();
-    return user.authorites[0].authority;
+    return user.authorities[0].authority;
   }
-  */
+  
 
 
 }
