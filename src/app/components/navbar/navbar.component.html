@@ -5,19 +5,19 @@
     <span>Exam Portal</span>
     <span class="example-spacer"></span>
 
-    <a *ngIf="!login.isLoggedIn()" [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <a *ngIf="!isLoggedIn" [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
         Login
     </a>
 
-    <a *ngIf="!login.isLoggedIn()" [routerLink]="'/signup'" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
+    <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
         Signup
     </a>
 
-    <a *ngIf="login.isLoggedIn()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
-        {{login.getUser().username}}
+    <a *ngIf="isLoggedIn && user" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
+        {{ user.username }}
     </a>
 
-    <a *ngIf="login.isLoggedIn()" (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
+    <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
         Logout
     </a>
 </mat-toolbar>
