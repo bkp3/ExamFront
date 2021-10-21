@@ -13,7 +13,7 @@
         Signup
     </a>
 
-    <a *ngIf="isLoggedIn && user" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
+    <a *ngIf="isLoggedIn && user" routerLink="/admin/profile" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="margin-left: 20px; margin-right: 20px;">
         {{ user.username }}
     </a>
 
