@@ -3,17 +3,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <form action="">
+                <form (ngSubmit)="addQuiz()">
                     <!-- title field -->
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Title</mat-label>
-                        <input type="text" name="title" placeholder="Enter here" matInput/>
+                        <input required [(ngModel)]="quizData.title" type="text" name="title" placeholder="Enter here" matInput/>
                     </mat-form-field>
 
                     <!-- description field -->
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Description</mat-label>
-                        <textarea name="description" placeholder="Enter here" matInput rows="5"></textarea>
+                        <textarea required [(ngModel)]="quizData.description" name="description" placeholder="Enter here" matInput rows="5"></textarea>
                     </mat-form-field>
 
                     <div class="row">
@@ -21,7 +21,7 @@
                             <!-- max marks -->
                             <mat-form-field class="w100" appearance="fill">
                                 <mat-label>Maximum Marks</mat-label>
-                                <input type="text" name="maxMarks" placeholder="Enter here" matInput/>
+                                <input required [(ngModel)]="quizData.maxMarks" type="text" name="maxMarks" placeholder="Enter here" matInput/>
                             </mat-form-field>
 
                         </div>
@@ -29,14 +29,14 @@
                             <!-- number of question to be shown -->
                             <mat-form-field class="w100" appearance="fill">
                                 <mat-label>Number Of Questions</mat-label>
-                                <input type="text" name="numberOfQuestions" placeholder="Enter here" matInput/>
+                                <input required [(ngModel)]="quizData.numberOfQuestions" type="text" name="numberOfQuestions" placeholder="Enter here" matInput/>
                             </mat-form-field>
 
                         </div>
                     </div>
 
                     <!-- active field -->
-                    <mat-slide-toggle [checked]="false" style="margin-top: 20px;">
+                    <mat-slide-toggle name="active" [(ngModel)]="quizData.active" style="margin-top: 20px;">
                         Publish status
                     </mat-slide-toggle>
 
@@ -44,8 +44,8 @@
                     <!-- select category -->
                     <mat-form-field appearance="fill" style="margin-top: 20px; width: 100%;">
                         <mat-label>Quiz Category</mat-label>
-                        <mat-select name="category">
-                            <mat-option *ngFor="let c of categories" [value]="c.cid">
+                        <mat-select required name="category" [(ngModel)]="quizData.category">
+                            <mat-option *ngFor="let c of categories" [value]="c">
                                 {{c.title}}
                             </mat-option>
                         </mat-select>
