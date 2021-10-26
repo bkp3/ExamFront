@@ -9,30 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class ViewQuizzesComponent implements OnInit {
 
-  quizzes=[
-    {
-      qId:23,
-      title:"Basic core java",
-      description:"core java quiz",
-      maxMarks:"50",
-      numberOfQuestions:"20",
-      active:"",
-      category:{
-        title:"programming",
-      }
-    },
-    {
-      qId:23,
-      title:"Basic core java",
-      description:"core java quiz",
-      maxMarks:"50",
-      numberOfQuestions:"20",
-      active:"",
-      category:{
-        title:"programming",
-      }
-    },
-  ]
+  quizzes:any;
 
   constructor(private _quiz:QuizService) { }
 
