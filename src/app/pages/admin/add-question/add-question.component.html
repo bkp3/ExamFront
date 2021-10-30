@@ -11,10 +11,14 @@
                 <mat-card-content>
                     <form (submit)="formSubmit()" style="margin-top: 20px;">
                         <!-- content field -->
-                        <mat-form-field class="w100">
+                        <!-- <mat-form-field class="w100">
                             <mat-label>Write Question Content</mat-label>
                             <textarea required [(ngModel)]="question.content" name="content" matInput placeholder="Enter here" rows="5"></textarea>
-                        </mat-form-field>
+                        </mat-form-field> -->
+
+                        <ckeditor [editor]="Editor" name="content" [(ngModel)]="question.content"></ckeditor>
+
+
                         <!-- options -->
                         <div class="row">
                             <div class="col-md-6">
