@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
@@ -64,16 +65,16 @@ const routes: Routes = [
         component: AddQuizComponent
       },
       {
-        path:'quiz/:qid',
-        component:UpdateQuizComponent,
+        path: 'quiz/:qid',
+        component: UpdateQuizComponent,
       },
       {
-        path:'view-questions/:qId/:title',
-        component:ViewQuizQuestionComponent
+        path: 'view-questions/:qId/:title',
+        component: ViewQuizQuestionComponent
       },
       {
-        path:"add-question/:qid/:title",
-        component:AddQuestionComponent
+        path: "add-question/:qid/:title",
+        component: AddQuestionComponent
       }
     ],
   },
@@ -81,11 +82,15 @@ const routes: Routes = [
     path: 'user-dashboard',
     component: UserDashboardComponent,
     canActivate: [NormalGuard],
-    children:[
+    children: [
       {
-        path:':catId',
-        component:LoadQuizComponent,
+        path: ':catId',
+        component: LoadQuizComponent,
       },
+      {
+        path: 'instructions/:qid',
+        component: InstructionsComponent
+      }
 
     ]
   },
