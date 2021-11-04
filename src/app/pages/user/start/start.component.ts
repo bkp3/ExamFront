@@ -2,6 +2,7 @@ import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-start',
@@ -10,31 +11,42 @@ import { QuestionService } from 'src/app/services/question.service';
 })
 export class StartComponent implements OnInit {
 
-  qid:any;
-  questions:any;
+  qid: any;
+  questions: any;
+  // givenAnswer:any;
 
-  constructor(private locationSt: LocationStrategy,private _route:ActivatedRoute,private _question:QuestionService) { }
+  marksGot = 0;
+  correctAnswers = 0;
+  attempted = 0;
+
+  isSubmit=false;
+
+  constructor(private locationSt: LocationStrategy, private _route: ActivatedRoute, private _question: QuestionService) { }
 
   ngOnInit(): void {
     this.preventBackButton();
-    this.qid=this._route.snapshot.params.qid;
+    this.qid = this._route.snapshot.params.qid;
     console.log(this.qid);
     this.loadQuestions();
   }
 
-  public loadQuestions(){
+  public loadQuestions() {
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
-      (data:any)=>{
+      (data: any) => {
         //success
         //console.log(data);
-        this.questions=data;
+        this.questions = data;
         console.log(this.questions);
-        
+        this.questions.forEach(
+          (q: any) => {
+            q['givenAnswer'] = '';
+          }
+        );
       },
-      (error)=>{
+      (error) => {
         //error
         console.log(error);
-        
+
       }
     );
 
@@ -45,6 +57,40 @@ export class StartComponent implements OnInit {
     this.locationSt.onPopState(
       () => {
         history.pushState(null, location.href);
+      }
+    )
+  }
+
+  submitQuiz() {
+    Swal.fire({
+      title: 'Do you want to submit the quiz?',
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      icon: "info",
+    }).then(
+      (e) => {
+        if (e.isConfirmed) {
+          this.isSubmit=true;
+          //calculations
+          this.questions.forEach(
+            (q: any) => {
+              if (q.givenAnswer == q.answer) {
+                this.correctAnswers++;
+                let markSingle = this.questions[0].quiz.maxMarks / this.questions.length;
+                this.marksGot += markSingle;
+              }
+              if(q.givenAnswer.trim()!=''){
+                this.attempted++;
+              }
+
+            }
+          )
+          console.log(this.correctAnswers);
+          console.log(this.marksGot);
+          console.log(this.attempted);
+          
+          
+        }
       }
     )
   }

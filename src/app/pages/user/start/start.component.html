@@ -1,4 +1,4 @@
-<div class="bootstrap-wrapper">
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
@@ -18,6 +18,7 @@
                         <mat-divider></mat-divider>
                         <div class="row" style="margin-top: 20px;">
                             <div class="col-md-6">
+                                <!-- [(ngModel)]="q.givenAnswer" -->
                                 <input type="radio" [value]="q.quesion1" [name]="i" />{{q.question1}}
                             </div>
                             <div class="col-md-6">
@@ -35,12 +36,36 @@
                     </mat-card-content>
                 </mat-card>
                 <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
-                    <button mat-raised-button color="primary">Submit Quiz</button>
+                    <button (click)="submitQuiz()" mat-raised-button color="primary">Submit Quiz</button>
                 </div>
             </div>
             <div class="col-md-2">
                 <!-- progress -->
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- show result -->
+<div class="bootstrap-wrapper" *ngIf="isSubmit">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 offset-md-3">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Quiz Result
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="text-center">
+                    <h1>Marks Got :- {{marksGot}}</h1>
+                    <h1>Correct Answers :- {{correctAnswers}}</h1>
+                    <h1>Questions Atemmpted :- {{attempted}}</h1>
+                </mat-card-content>
+                <mat-card-actions class="text-center">
+                    <button mat-raised-button color="primary">Print</button>
+                    <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">Home</button>
+                </mat-card-actions>
+            </mat-card>
         </div>
     </div>
 </div>
