@@ -126,4 +126,8 @@ export class StartComponent implements OnInit {
     console.log(this.attempted);
   }
 
+  printPage(){
+    window.print();
+  }
+
 }
